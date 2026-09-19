@@ -402,7 +402,7 @@ a {
   margin: 0 auto;
   padding: 0;
   border: 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .date-card {
@@ -567,6 +567,18 @@ a {
   line-height: 0.9;
 }
 
+.plan-panel__date-note {
+  max-width: 390px;
+  margin: 1.6rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  line-height: 1.65;
+  text-transform: uppercase;
+}
+
 .plan-panel__form {
   min-width: 0;
 }
@@ -594,6 +606,138 @@ a {
   margin: 0 0 1rem;
   color: rgba(255, 255, 255, 0.58);
   font-size: 0.875rem;
+}
+
+.food-picker {
+  margin: 0 0 2.3rem;
+  padding: 0;
+  border: 0;
+}
+
+.food-picker[hidden] {
+  display: none;
+}
+
+.food-picker legend {
+  margin-bottom: 0.35rem;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.food-picker > p {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.875rem;
+}
+
+.food-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.food-option {
+  display: flex;
+  min-width: 0;
+  min-height: 70px;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 0.75rem 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.food-option:has(input:checked) {
+  border-color: var(--rose);
+  background: rgba(255, 117, 151, 0.1);
+}
+
+.food-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.food-option:has(input:focus-visible) {
+  outline: 3px solid var(--rose);
+  outline-offset: -3px;
+}
+
+.food-option__mark {
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px var(--ink);
+  flex: 0 0 auto;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.food-option input:checked + .food-option__mark {
+  border-color: var(--rose);
+  background: var(--rose);
+}
+
+.food-option > span:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 0.1rem;
+}
+
+.food-option strong {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.food-option small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+
+.food-suggestion {
+  display: grid;
+  gap: 0.55rem;
+  max-width: 440px;
+  margin-top: 0.9rem;
+}
+
+.food-suggestion[hidden] {
+  display: none;
+}
+
+.food-suggestion > span {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.food-suggestion input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  padding: 0.9rem 0;
+}
+
+.food-suggestion input:focus {
+  border-color: var(--rose);
+  outline: none;
+}
+
+.food-suggestion input::placeholder {
+  color: rgba(255, 255, 255, 0.36);
 }
 
 .restaurant-options {
@@ -692,6 +836,11 @@ a {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
+}
+
+.form-grid--single {
+  max-width: 440px;
+  grid-template-columns: 1fr;
 }
 
 .field {
@@ -973,6 +1122,23 @@ footer {
   pointer-events: none;
 }
 
+.touch-effects {
+  position: fixed;
+  z-index: 130;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.touch-affection {
+  position: absolute;
+  color: var(--rose);
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
+  filter: drop-shadow(0 4px 10px rgba(255, 117, 151, 0.42));
+  animation: touch-affection-float 1.15s cubic-bezier(0.22, 0.8, 0.35, 1) var(--delay, 0ms) forwards;
+  will-change: transform, opacity;
+}
+
 .particle {
   position: absolute;
   bottom: -30px;
@@ -997,6 +1163,12 @@ footer {
   0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.4); }
   15% { opacity: 1; }
   100% { opacity: 0; transform: translate3d(var(--drift), -110vh, 0) scale(1.15); }
+}
+
+@keyframes touch-affection-float {
+  0% { opacity: 0; transform: translate3d(-50%, -20%, 0) scale(0.5) rotate(0deg); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(calc(-50% + var(--drift)), -100px, 0) scale(1.1) rotate(var(--spin)); }
 }
 
 @media (max-width: 950px) {
@@ -1134,6 +1306,10 @@ footer {
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .food-options {
     grid-template-columns: 1fr;
   }
 

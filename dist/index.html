@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Особисте запрошення на побачення — обери настрій, день і час нашого вечора."
+      content="Особисте запрошення на побачення 20 вересня — обери вечір, ресторан або їжу і час."
     />
     <meta name="theme-color" content="#130910" />
-    <title>Обери наше побачення</title>
+    <title>Наше побачення · 20 вересня</title>
     <link
       rel="icon"
       type="image/svg+xml"
@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body class="is-locked">
     <div class="intro" id="intro" aria-labelledby="intro-title">
@@ -30,7 +30,7 @@
         <p class="eyebrow">Лише для тебе</p>
         <h1 id="intro-title">У мене є одне маленьке запрошення</h1>
         <p class="intro__copy">
-          Тут немає правильної відповіді. Є лише вечір, який я дуже хочу провести з тобою.
+          20 вересня я дуже хочу провести цей вечір з тобою. Тобі залишається обрати варіант вечора і час.
         </p>
         <button class="primary-button primary-button--light" id="open-invite" type="button">
           <span>Відкрити</span>
@@ -46,20 +46,20 @@
       <header class="topbar">
         <a class="wordmark" href="#top" aria-label="На початок сторінки">Для нас двох</a>
         <span class="topbar__mark" aria-hidden="true">♡</span>
-        <span class="topbar__index">Особливий вечір / 01</span>
+        <span class="topbar__index">20 вересня / 01</span>
       </header>
 
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero__image" role="img" aria-label="Закохана пара біля моря"></div>
         <div class="hero__shade" aria-hidden="true"></div>
         <div class="hero__content">
-          <p class="eyebrow">Одне питання</p>
-          <h2 id="hero-title" tabindex="-1">Цей вечір —<br /><em>твій вибір</em></h2>
+          <p class="eyebrow">Наша дата</p>
+          <h2 id="hero-title" tabindex="-1">20 вересня —<br /><em>наш вечір</em></h2>
           <p class="hero__lead">
-            Обери настрій, а про маршрут, маленькі сюрпризи й усе інше подбаю я.
+            Дата вже обрана. Тобі залишилося вибрати варіант вечора і час, а про решту подбаю я.
           </p>
           <a class="text-link" href="#choose">
-            Обрати наше побачення
+            Обрати варіант вечора
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 5v14M6 13l6 6 6-6" />
             </svg>
@@ -70,14 +70,14 @@
 
       <section class="chooser" id="choose" aria-labelledby="chooser-title">
         <div class="section-heading">
-          <p class="eyebrow eyebrow--dark">Три маленькі історії</p>
-          <h2 id="chooser-title">Який настрій обираєш?</h2>
-          <p>Ти обираєш відчуття. Решту я перетворю на сюрприз.</p>
+          <p class="eyebrow eyebrow--dark">Твій вибір на цей вечір</p>
+          <h2 id="chooser-title">Дві історії<br />на 20 вересня</h2>
+          <p><time datetime="2026-09-20">Неділя, 20 вересня 2026 року.</time> Обери варіант вечора, а потім лише час і потрібні деталі.</p>
         </div>
 
         <form id="date-form" novalidate>
           <fieldset class="date-options">
-            <legend class="sr-only">Оберіть варіант побачення</legend>
+            <legend class="sr-only">Оберіть варіант вечора</legend>
 
             <label class="date-card" for="date-slow">
               <input
@@ -85,13 +85,15 @@
                 type="radio"
                 name="date-idea"
                 value="Ресторан і Сад Шевченка"
+                data-plan="restaurant"
                 data-detail="вечеря в обраному ресторані та прогулянка Садом Шевченка"
+                checked
               />
               <span class="date-card__number">01</span>
               <span class="date-card__body">
                 <span class="date-card__kicker">ресторан · парк · розмови</span>
                 <strong>Смаки &amp;<br />прогулянка</strong>
-                <span>Ти обираєш один із трьох ресторанів, а після — гуляємо Садом Шевченка.</span>
+                <span>Обираєш один із трьох ресторанів, а після вечері — прогулянка Садом Шевченка.</span>
               </span>
               <span class="date-card__select" aria-hidden="true">Обрати</span>
             </label>
@@ -101,46 +103,32 @@
                 id="date-cinema"
                 type="radio"
                 name="date-idea"
-                value="Кіно під зорями"
-                data-detail="плед, смаколики та наш фільм під вечірнім небом"
+                value="Менталіст і смаколики"
+                data-plan="mentalist"
+                data-detail="серіал «Менталіст» і смачна доставка"
               />
               <span class="date-card__number">02</span>
               <span class="date-card__body">
-                <span class="date-card__kicker">плед · кіно · обійми</span>
-                <strong>Кіно<br />під зорями</strong>
-                <span>Теплий плед, коробка улюблених смаколиків і фільм, який оберемо разом.</span>
+                <span class="date-card__kicker">серіал · диван · доставка</span>
+                <strong>Менталіст<br />і смаколики</strong>
+                <span>Дивимося серіал «Менталіст» і разом обираємо, що замовити до перегляду.</span>
               </span>
               <span class="date-card__select" aria-hidden="true">Обрати</span>
             </label>
 
-            <label class="date-card" for="date-adventure">
-              <input
-                id="date-adventure"
-                type="radio"
-                name="date-idea"
-                value="Маленька пригода"
-                data-detail="секретний маршрут, кава з собою та кілька несподіваних зупинок"
-              />
-              <span class="date-card__number">03</span>
-              <span class="date-card__body">
-                <span class="date-card__kicker">маршрут · музика · сюрприз</span>
-                <strong>Маленька<br />пригода</strong>
-                <span>Секретний маршрут, кава з собою й кілька зупинок, про які ти не знатимеш.</span>
-              </span>
-              <span class="date-card__select" aria-hidden="true">Обрати</span>
-            </label>
           </fieldset>
 
-          <div class="plan-panel" id="plan-panel" aria-live="polite">
+          <div class="plan-panel is-visible" id="plan-panel">
             <div class="plan-panel__heading">
-              <span class="plan-panel__step">Наступний крок</span>
-              <h3>Коли викрадати тебе на побачення?</h3>
+              <span class="plan-panel__step">Дата вже обрана</span>
+              <h3>Неділя,<br />20 вересня</h3>
+              <p class="plan-panel__date-note">2026 року · вечір для нас двох</p>
             </div>
 
             <div class="plan-panel__form">
-              <fieldset class="restaurant-picker" id="restaurant-picker" hidden>
-                <legend>Де почнемо вечір?</legend>
-                <p>Обери ресторан — прогулянка Садом Шевченка вже входить у план.</p>
+              <fieldset class="restaurant-picker" id="restaurant-picker">
+                <legend>Який ресторан обираєш?</legend>
+                <p>Прогулянка Садом Шевченка після вечері вже входить у план.</p>
                 <div class="restaurant-options">
                   <div class="restaurant-option">
                     <label for="restaurant-dumky">
@@ -210,39 +198,63 @@
                 </div>
               </fieldset>
 
-              <div class="form-grid">
-                <label class="field">
-                  <span>Обери день</span>
-                  <input id="date-day" name="date-day" type="date" required />
+              <fieldset class="food-picker" id="food-picker" hidden>
+                <legend>Що замовляємо до «Менталіста»?</legend>
+                <p>Обери смаколики або запропонуй свій варіант доставки.</p>
+                <div class="food-options">
+                  <label class="food-option" for="food-sushi">
+                    <input id="food-sushi" type="radio" name="food" value="Суші" />
+                    <span class="food-option__mark" aria-hidden="true"></span>
+                    <span><strong>Суші</strong><small>Легко і смачно</small></span>
+                  </label>
+                  <label class="food-option" for="food-pizza">
+                    <input id="food-pizza" type="radio" name="food" value="Піца" />
+                    <span class="food-option__mark" aria-hidden="true"></span>
+                    <span><strong>Піца</strong><small>Класика для вечора</small></span>
+                  </label>
+                  <label class="food-option" for="food-shawarma">
+                    <input id="food-shawarma" type="radio" name="food" value="Шаурма" />
+                    <span class="food-option__mark" aria-hidden="true"></span>
+                    <span><strong>Шаурма</strong><small>З хрусткою корочкою</small></span>
+                  </label>
+                  <label class="food-option" for="food-burgers">
+                    <input id="food-burgers" type="radio" name="food" value="Бургери" />
+                    <span class="food-option__mark" aria-hidden="true"></span>
+                    <span><strong>Бургери</strong><small>Тепле й ситно</small></span>
+                  </label>
+                  <label class="food-option" for="food-shashlik">
+                    <input id="food-shashlik" type="radio" name="food" value="Шашлик" />
+                    <span class="food-option__mark" aria-hidden="true"></span>
+                    <span><strong>Шашлик</strong><small>Як маленьке свято</small></span>
+                  </label>
+                  <label class="food-option" for="food-custom">
+                    <input id="food-custom" type="radio" name="food" value="Інша доставка" />
+                    <span class="food-option__mark" aria-hidden="true"></span>
+                    <span><strong>Інша ідея</strong><small>Запропонуй доставку</small></span>
+                  </label>
+                </div>
+                <label class="food-suggestion" id="food-suggestion" hidden>
+                  <span>Твоя пропозиція</span>
+                  <input id="food-custom-note" type="text" maxlength="100" placeholder="Наприклад: вок або улюблена піцерія" />
                 </label>
+              </fieldset>
 
+              <div class="form-grid form-grid--single">
                 <label class="field">
-                  <span>Найкращий час</span>
+                  <span>О котрій зустрічаємось?</span>
                   <select id="date-time" name="date-time" required>
                     <option value="">Обери час</option>
                     <option>17:00</option>
                     <option>18:00</option>
                     <option>19:00</option>
                     <option>20:00</option>
-                    <option value="Нехай час буде сюрпризом">Нехай час буде сюрпризом</option>
                   </select>
-                </label>
-
-                <label class="field field--wide">
-                  <span>Маленька підказка для мене <small>(необов’язково)</small></span>
-                  <textarea
-                    id="date-note"
-                    name="date-note"
-                    rows="3"
-                    maxlength="180"
-                    placeholder="Наприклад: хочу багато обіймів і щось солодке…"
-                  ></textarea>
                 </label>
               </div>
 
               <p class="form-error" id="form-error" role="alert"></p>
               <button class="primary-button" type="submit">
-                <span>Це моє побачення</span>
+                <span>Підтвердити вибір</span>
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
@@ -285,6 +297,7 @@
     </dialog>
 
     <div class="particles" id="particles" aria-hidden="true"></div>
-    <script src="app.js?v=4" defer></script>
+    <div class="touch-effects" id="touch-effects" aria-hidden="true"></div>
+    <script src="app.js?v=8" defer></script>
   </body>
 </html>
