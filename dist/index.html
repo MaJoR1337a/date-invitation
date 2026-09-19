@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Особисте запрошення на побачення — обери настрій, день і час нашого вечора."
+    />
+    <meta name="theme-color" content="#130910" />
+    <title>Обери наше побачення</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%235a0c2e'/%3E%3Cpath d='M32 49S13 39.3 13 25.5C13 18.7 18.2 15 23 15c3.9 0 7.2 2.2 9 5.2C33.8 17.2 37.1 15 41 15c4.8 0 10 3.7 10 10.5C51 39.3 32 49 32 49Z' fill='%23fff4eb'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=3" />
+  </head>
+  <body class="is-locked">
+    <div class="intro" id="intro" aria-labelledby="intro-title">
+      <div class="intro__photo" aria-hidden="true"></div>
+      <div class="intro__veil" aria-hidden="true"></div>
+      <div class="intro__content">
+        <p class="eyebrow">Лише для тебе</p>
+        <h1 id="intro-title">У мене є одне маленьке запрошення</h1>
+        <p class="intro__copy">
+          Тут немає правильної відповіді. Є лише вечір, який я дуже хочу провести з тобою.
+        </p>
+        <button class="primary-button primary-button--light" id="open-invite" type="button">
+          <span>Відкрити</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </button>
+        <p class="intro__note">Відкривати з усмішкою</p>
+      </div>
+    </div>
+
+    <main id="main-content" class="site" aria-hidden="true">
+      <header class="topbar">
+        <a class="wordmark" href="#top" aria-label="На початок сторінки">Для нас двох</a>
+        <span class="topbar__mark" aria-hidden="true">♡</span>
+        <span class="topbar__index">Особливий вечір / 01</span>
+      </header>
+
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero__image" role="img" aria-label="Закохана пара біля моря"></div>
+        <div class="hero__shade" aria-hidden="true"></div>
+        <div class="hero__content">
+          <p class="eyebrow">Одне питання</p>
+          <h2 id="hero-title" tabindex="-1">Цей вечір —<br /><em>твій вибір</em></h2>
+          <p class="hero__lead">
+            Обери настрій, а про маршрут, маленькі сюрпризи й усе інше подбаю я.
+          </p>
+          <a class="text-link" href="#choose">
+            Обрати наше побачення
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14M6 13l6 6 6-6" />
+            </svg>
+          </a>
+        </div>
+        <p class="hero__side-note" aria-hidden="true">ти + я · без поспіху</p>
+      </section>
+
+      <section class="chooser" id="choose" aria-labelledby="chooser-title">
+        <div class="section-heading">
+          <p class="eyebrow eyebrow--dark">Три маленькі історії</p>
+          <h2 id="chooser-title">Який настрій обираєш?</h2>
+          <p>Ти обираєш відчуття. Решту я перетворю на сюрприз.</p>
+        </div>
+
+        <form id="date-form" novalidate>
+          <fieldset class="date-options">
+            <legend class="sr-only">Оберіть варіант побачення</legend>
+
+            <label class="date-card" for="date-slow">
+              <input
+                id="date-slow"
+                type="radio"
+                name="date-idea"
+                value="Повільно й смачно"
+                data-detail="затишна вечеря та довга прогулянка без плану"
+              />
+              <span class="date-card__number">01</span>
+              <span class="date-card__body">
+                <span class="date-card__kicker">свічки · улюблені смаки</span>
+                <strong>Повільно<br />й смачно</strong>
+                <span>Затишна вечеря, десерт на двох і прогулянка без погляду на годинник.</span>
+              </span>
+              <span class="date-card__select" aria-hidden="true">Обрати</span>
+            </label>
+
+            <label class="date-card" for="date-cinema">
+              <input
+                id="date-cinema"
+                type="radio"
+                name="date-idea"
+                value="Кіно під зорями"
+                data-detail="плед, смаколики та наш фільм під вечірнім небом"
+              />
+              <span class="date-card__number">02</span>
+              <span class="date-card__body">
+                <span class="date-card__kicker">плед · кіно · обійми</span>
+                <strong>Кіно<br />під зорями</strong>
+                <span>Теплий плед, коробка улюблених смаколиків і фільм, який оберемо разом.</span>
+              </span>
+              <span class="date-card__select" aria-hidden="true">Обрати</span>
+            </label>
+
+            <label class="date-card" for="date-adventure">
+              <input
+                id="date-adventure"
+                type="radio"
+                name="date-idea"
+                value="Маленька пригода"
+                data-detail="секретний маршрут, кава з собою та кілька несподіваних зупинок"
+              />
+              <span class="date-card__number">03</span>
+              <span class="date-card__body">
+                <span class="date-card__kicker">маршрут · музика · сюрприз</span>
+                <strong>Маленька<br />пригода</strong>
+                <span>Секретний маршрут, кава з собою й кілька зупинок, про які ти не знатимеш.</span>
+              </span>
+              <span class="date-card__select" aria-hidden="true">Обрати</span>
+            </label>
+          </fieldset>
+
+          <div class="plan-panel" id="plan-panel" aria-live="polite">
+            <div class="plan-panel__heading">
+              <span class="plan-panel__step">Наступний крок</span>
+              <h3>Коли викрадати тебе на побачення?</h3>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Обери день</span>
+                <input id="date-day" name="date-day" type="date" required />
+              </label>
+
+              <label class="field">
+                <span>Найкращий час</span>
+                <select id="date-time" name="date-time" required>
+                  <option value="">Обери час</option>
+                  <option>17:00</option>
+                  <option>18:00</option>
+                  <option>19:00</option>
+                  <option>20:00</option>
+                  <option value="Нехай час буде сюрпризом">Нехай час буде сюрпризом</option>
+                </select>
+              </label>
+
+              <label class="field field--wide">
+                <span>Маленька підказка для мене <small>(необов’язково)</small></span>
+                <textarea
+                  id="date-note"
+                  name="date-note"
+                  rows="3"
+                  maxlength="180"
+                  placeholder="Наприклад: хочу багато обіймів і щось солодке…"
+                ></textarea>
+              </label>
+            </div>
+
+            <p class="form-error" id="form-error" role="alert"></p>
+            <button class="primary-button" type="submit">
+              <span>Це моє побачення</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="promise" aria-label="Обіцянка на вечір">
+        <p class="promise__mark" aria-hidden="true">“</p>
+        <blockquote>
+          Я обіцяю: цього вечора ми нікуди не поспішатимемо. Будемо тільки ти, я і ще один
+          спогад, який захочеться зберегти.
+        </blockquote>
+        <p class="promise__sign">З любов’ю, твій організатор пригод</p>
+      </section>
+
+      <footer>
+        <span>Створено для однієї особливої дівчини</span>
+        <button class="footer-link" id="reopen-intro" type="button">Перечитати спочатку</button>
+      </footer>
+    </main>
+
+    <dialog class="finale" id="finale" aria-labelledby="finale-title">
+      <div class="finale__glow" aria-hidden="true"></div>
+      <button class="finale__close" id="close-finale" type="button" aria-label="Закрити">×</button>
+      <p class="eyebrow">Домовились</p>
+      <h2 id="finale-title">Це буде наш вечір</h2>
+      <p class="finale__message" id="finale-message"></p>
+      <div class="finale__ticket" id="finale-ticket"></div>
+      <p class="finale__closing">Ти бери гарний настрій. Я беру на себе все інше.</p>
+      <div class="finale__actions">
+        <button class="primary-button primary-button--light" id="copy-answer" type="button">
+          <span>Скопіювати відповідь</span>
+        </button>
+        <button class="text-button" id="change-answer" type="button">Змінити вибір</button>
+      </div>
+      <p class="copy-status" id="copy-status" role="status"></p>
+    </dialog>
+
+    <div class="particles" id="particles" aria-hidden="true"></div>
+    <script src="app.js?v=3" defer></script>
+  </body>
+</html>
