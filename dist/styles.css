@@ -538,7 +538,7 @@ a {
 }
 
 .plan-panel.is-visible {
-  max-height: 1100px;
+  max-height: 2200px;
   margin-top: 1.5rem;
   padding: clamp(2rem, 5vw, 4.5rem);
   opacity: 1;
@@ -565,6 +565,127 @@ a {
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 0.9;
+}
+
+.plan-panel__form {
+  min-width: 0;
+}
+
+.restaurant-picker {
+  margin: 0 0 2.3rem;
+  padding: 0;
+  border: 0;
+}
+
+.restaurant-picker[hidden] {
+  display: none;
+}
+
+.restaurant-picker legend {
+  margin-bottom: 0.35rem;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.restaurant-picker > p {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.875rem;
+}
+
+.restaurant-options {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.restaurant-option {
+  display: grid;
+  min-height: 72px;
+  align-items: stretch;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.025);
+  grid-template-columns: minmax(0, 1fr) auto;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.restaurant-option:has(input:checked) {
+  border-color: var(--rose);
+  background: rgba(255, 117, 151, 0.1);
+}
+
+.restaurant-option label {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 0.9rem;
+  cursor: pointer;
+}
+
+.restaurant-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.restaurant-option label:has(input:focus-visible) {
+  outline: 3px solid var(--rose);
+  outline-offset: -3px;
+}
+
+.restaurant-option__mark {
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px var(--ink);
+  flex: 0 0 auto;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.restaurant-option input:checked + .restaurant-option__mark {
+  border-color: var(--rose);
+  background: var(--rose);
+}
+
+.restaurant-option label > span:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 0.1rem;
+}
+
+.restaurant-option strong {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.restaurant-option small {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.restaurant-option a {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.13);
+  color: var(--blush);
+  font-size: 0.875rem;
+  padding: 0.75rem 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.restaurant-option a:hover {
+  background: var(--rose);
+  color: var(--ink);
 }
 
 .form-grid {
@@ -1004,6 +1125,12 @@ footer {
 
   .plan-panel.is-visible {
     padding: 2.1rem 1.3rem;
+  }
+
+  .restaurant-option small {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
   }
 
   .form-grid {

@@ -4,6 +4,8 @@ const reopenIntroButton = document.querySelector("#reopen-intro");
 const mainContent = document.querySelector("#main-content");
 const dateForm = document.querySelector("#date-form");
 const planPanel = document.querySelector("#plan-panel");
+const restaurantPicker = document.querySelector("#restaurant-picker");
+const restaurantInputs = [...document.querySelectorAll('input[name="restaurant"]')];
 const dayInput = document.querySelector("#date-day");
 const timeInput = document.querySelector("#date-time");
 const noteInput = document.querySelector("#date-note");
@@ -53,6 +55,7 @@ reopenIntroButton.addEventListener("click", showIntroAgain);
 
 document.querySelectorAll('input[name="date-idea"]').forEach((radio) => {
   radio.addEventListener("change", () => {
+    restaurantPicker.hidden = radio.id !== "date-slow";
     planPanel.classList.add("is-visible");
     formError.textContent = "";
     window.setTimeout(() => {
@@ -61,8 +64,18 @@ document.querySelectorAll('input[name="date-idea"]').forEach((radio) => {
   });
 });
 
+restaurantInputs.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    formError.textContent = "";
+  });
+});
+
 function selectedIdea() {
   return document.querySelector('input[name="date-idea"]:checked');
+}
+
+function selectedRestaurant() {
+  return document.querySelector('input[name="restaurant"]:checked');
 }
 
 function formatDate(dateValue) {
@@ -111,9 +124,16 @@ function createParticles() {
 dateForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const idea = selectedIdea();
+  const restaurant = selectedRestaurant();
 
   if (!idea) {
     formError.textContent = "Спочатку обери настрій нашого побачення.";
+    return;
+  }
+
+  if (idea.id === "date-slow" && !restaurant) {
+    formError.textContent = "Обери ресторан, з якого почнемо наш вечір.";
+    restaurantInputs[0].focus();
     return;
   }
 
@@ -125,11 +145,17 @@ dateForm.addEventListener("submit", (event) => {
 
   const formattedDay = formatDate(dayInput.value);
   const note = noteInput.value.trim();
+  const restaurantPlan = idea.id === "date-slow";
+  const planDetail = restaurantPlan
+    ? `вечеря в «${restaurant.value}» та прогулянка Садом Шевченка`
+    : idea.dataset.detail;
   formError.textContent = "";
 
-  finaleMessage.textContent = `Ти обрала «${idea.value}» — ${idea.dataset.detail}. Уже звучить ідеально.`;
+  finaleMessage.textContent = `Ти обрала «${idea.value}» — ${planDetail}. Уже звучить ідеально.`;
   finaleTicket.replaceChildren(
     ticketRow("Наш план", idea.value),
+    ...(restaurantPlan ? [ticketRow("Ресторан", restaurant.value)] : []),
+    ...(restaurantPlan ? [ticketRow("Після вечері", "Сад Шевченка")] : []),
     ticketRow("День", formattedDay),
     ticketRow("Час", timeInput.value),
     ...(note ? [ticketRow("Побажання", note)] : []),
@@ -137,6 +163,8 @@ dateForm.addEventListener("submit", (event) => {
 
   answerText = [
     `Я обираю побачення «${idea.value}» 💌`,
+    restaurantPlan ? `Ресторан: ${restaurant.value}` : "",
+    restaurantPlan ? "Після вечері: прогулянка Садом Шевченка" : "",
     `День: ${formattedDay}`,
     `Час: ${timeInput.value}`,
     note ? `Моя підказка: ${note}` : "",
@@ -181,14 +209,20 @@ async function registerDatePlannerTool() {
       name: "choose_date_plan",
       title: "Обрати наше побачення",
       description:
-        "Обирає один із трьох сценаріїв побачення, бажаний день, час і необов’язкову підказку, а потім показує фінальний квиток.",
+        "Обирає один із трьох сценаріїв побачення, ресторан для першого сценарію, бажаний день, час і необов’язкову підказку, а потім показує фінальний квиток.",
       inputSchema: {
         type: "object",
         properties: {
           idea: {
             type: "string",
             enum: ["slow", "cinema", "adventure"],
-            description: "slow — вечеря, cinema — кіно під зорями, adventure — маленька пригода.",
+            description:
+              "slow — ресторан і Сад Шевченка, cinema — кіно під зорями, adventure — маленька пригода.",
+          },
+          restaurant: {
+            type: "string",
+            enum: ["Думки на смак", "NON", "Гостиная"],
+            description: "Потрібно лише для сценарію slow.",
           },
           day: {
             type: "string",
@@ -208,13 +242,18 @@ async function registerDatePlannerTool() {
         required: ["idea", "day", "time"],
         additionalProperties: false,
       },
-      execute: async ({ idea, day, time, note = "" }) => {
+      execute: async ({ idea, restaurant = "", day, time, note = "" }) => {
         if (day < dayInput.min) {
           throw new Error("Обраний день уже минув. Оберіть сьогодні або пізнішу дату.");
         }
 
         const ideaInput = document.querySelector(`#date-${idea}`);
         if (!ideaInput) throw new Error("Невідомий сценарій побачення.");
+
+        const restaurantInput = restaurantInputs.find((input) => input.value === restaurant);
+        if (idea === "slow" && !restaurantInput) {
+          throw new Error("Для цього сценарію оберіть ресторан: Думки на смак, NON або Гостиная.");
+        }
 
         mainContent.setAttribute("aria-hidden", "false");
         mainContent.classList.add("is-visible");
@@ -224,6 +263,10 @@ async function registerDatePlannerTool() {
 
         ideaInput.checked = true;
         ideaInput.dispatchEvent(new Event("change", { bubbles: true }));
+        if (restaurantInput) {
+          restaurantInput.checked = true;
+          restaurantInput.dispatchEvent(new Event("change", { bubbles: true }));
+        }
         dayInput.value = day;
         timeInput.value = time;
         noteInput.value = note.slice(0, 180);
@@ -235,6 +278,7 @@ async function registerDatePlannerTool() {
         return {
           status: "confirmation_shown",
           idea: ideaInput.value,
+          restaurant: restaurantInput?.value || null,
           day,
           time,
           note: noteInput.value,

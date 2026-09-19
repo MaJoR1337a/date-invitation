@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body class="is-locked">
     <div class="intro" id="intro" aria-labelledby="intro-title">
@@ -84,14 +84,14 @@
                 id="date-slow"
                 type="radio"
                 name="date-idea"
-                value="Повільно й смачно"
-                data-detail="затишна вечеря та довга прогулянка без плану"
+                value="Ресторан і Сад Шевченка"
+                data-detail="вечеря в обраному ресторані та прогулянка Садом Шевченка"
               />
               <span class="date-card__number">01</span>
               <span class="date-card__body">
-                <span class="date-card__kicker">свічки · улюблені смаки</span>
-                <strong>Повільно<br />й смачно</strong>
-                <span>Затишна вечеря, десерт на двох і прогулянка без погляду на годинник.</span>
+                <span class="date-card__kicker">ресторан · парк · розмови</span>
+                <strong>Смаки &amp;<br />прогулянка</strong>
+                <span>Ти обираєш один із трьох ресторанів, а після — гуляємо Садом Шевченка.</span>
               </span>
               <span class="date-card__select" aria-hidden="true">Обрати</span>
             </label>
@@ -137,43 +137,117 @@
               <h3>Коли викрадати тебе на побачення?</h3>
             </div>
 
-            <div class="form-grid">
-              <label class="field">
-                <span>Обери день</span>
-                <input id="date-day" name="date-day" type="date" required />
-              </label>
+            <div class="plan-panel__form">
+              <fieldset class="restaurant-picker" id="restaurant-picker" hidden>
+                <legend>Де почнемо вечір?</legend>
+                <p>Обери ресторан — прогулянка Садом Шевченка вже входить у план.</p>
+                <div class="restaurant-options">
+                  <div class="restaurant-option">
+                    <label for="restaurant-dumky">
+                      <input
+                        id="restaurant-dumky"
+                        type="radio"
+                        name="restaurant"
+                        value="Думки на смак"
+                      />
+                      <span class="restaurant-option__mark" aria-hidden="true"></span>
+                      <span>
+                        <strong>Думки на смак</strong>
+                        <small>Павлівська площа, 5/7</small>
+                      </span>
+                    </label>
+                    <a
+                      href="https://www.instagram.com/dumky_na_smak/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Відкрити Instagram ресторану Думки на смак"
+                    >Instagram ↗</a>
+                  </div>
 
-              <label class="field">
-                <span>Найкращий час</span>
-                <select id="date-time" name="date-time" required>
-                  <option value="">Обери час</option>
-                  <option>17:00</option>
-                  <option>18:00</option>
-                  <option>19:00</option>
-                  <option>20:00</option>
-                  <option value="Нехай час буде сюрпризом">Нехай час буде сюрпризом</option>
-                </select>
-              </label>
+                  <div class="restaurant-option">
+                    <label for="restaurant-non">
+                      <input
+                        id="restaurant-non"
+                        type="radio"
+                        name="restaurant"
+                        value="NON"
+                      />
+                      <span class="restaurant-option__mark" aria-hidden="true"></span>
+                      <span>
+                        <strong>NON</strong>
+                        <small>вул. Григорія Сковороди, 32/1</small>
+                      </span>
+                    </label>
+                    <a
+                      href="https://www.instagram.com/non.restaurant/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Відкрити Instagram ресторану NON"
+                    >Instagram ↗</a>
+                  </div>
 
-              <label class="field field--wide">
-                <span>Маленька підказка для мене <small>(необов’язково)</small></span>
-                <textarea
-                  id="date-note"
-                  name="date-note"
-                  rows="3"
-                  maxlength="180"
-                  placeholder="Наприклад: хочу багато обіймів і щось солодке…"
-                ></textarea>
-              </label>
+                  <div class="restaurant-option">
+                    <label for="restaurant-gostinaya">
+                      <input
+                        id="restaurant-gostinaya"
+                        type="radio"
+                        name="restaurant"
+                        value="Гостиная"
+                      />
+                      <span class="restaurant-option__mark" aria-hidden="true"></span>
+                      <span>
+                        <strong>Гостиная</strong>
+                        <small>вул. Сумська, 44/2</small>
+                      </span>
+                    </label>
+                    <a
+                      href="https://cafe-gostinaya.com.ua/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Відкрити сайт ресторану Гостиная"
+                    >Сайт ↗</a>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="form-grid">
+                <label class="field">
+                  <span>Обери день</span>
+                  <input id="date-day" name="date-day" type="date" required />
+                </label>
+
+                <label class="field">
+                  <span>Найкращий час</span>
+                  <select id="date-time" name="date-time" required>
+                    <option value="">Обери час</option>
+                    <option>17:00</option>
+                    <option>18:00</option>
+                    <option>19:00</option>
+                    <option>20:00</option>
+                    <option value="Нехай час буде сюрпризом">Нехай час буде сюрпризом</option>
+                  </select>
+                </label>
+
+                <label class="field field--wide">
+                  <span>Маленька підказка для мене <small>(необов’язково)</small></span>
+                  <textarea
+                    id="date-note"
+                    name="date-note"
+                    rows="3"
+                    maxlength="180"
+                    placeholder="Наприклад: хочу багато обіймів і щось солодке…"
+                  ></textarea>
+                </label>
+              </div>
+
+              <p class="form-error" id="form-error" role="alert"></p>
+              <button class="primary-button" type="submit">
+                <span>Це моє побачення</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
             </div>
-
-            <p class="form-error" id="form-error" role="alert"></p>
-            <button class="primary-button" type="submit">
-              <span>Це моє побачення</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </button>
           </div>
         </form>
       </section>
@@ -211,6 +285,6 @@
     </dialog>
 
     <div class="particles" id="particles" aria-hidden="true"></div>
-    <script src="app.js?v=3" defer></script>
+    <script src="app.js?v=4" defer></script>
   </body>
 </html>
